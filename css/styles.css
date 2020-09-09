@@ -32,3 +32,11 @@ select {
     margin-right: 5px;
     margin-top: 5px;
 }
+
+.error {
+    background-color: rgb(255, 184, 184);
+}
+
+.sinError {
+    background-color: white;
+}
