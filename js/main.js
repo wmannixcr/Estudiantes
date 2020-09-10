@@ -24,10 +24,24 @@ function init(e) {
     agregarEstudiante('Mario', 'Lopez', '95', 'mlopez@mail.com');
     agregarEstudiante('Laura', 'Morales', '65', 'lmorales@mail.com');
 
-     /*Notas: Reto analiza lo que esta pasando aqui y mejoralo.
-    1. En lugar de cambiar el color al border mejor agregar una clase de css, por ejeplo error y si estan bien quitarsela.
-    2. Si un campo por ejemplo el nombre dio error y si el usuario empieza a agregar el dato que se actualice el estado del color automaticamente, usar el event onchange para eso.
-    */
+    //Debes usar el onkeyup que se dispara cada ves que se detecta que una tecla se levanto en el input.
+    //Aqui se hace para nombreInput pero puedes hacer uno para todos, osea sacar el codigo que se repite a una function.
+    nombreInput.onkeyup = function (e) {
+        if (nombreInput.value === '') {
+            nombreInput.className = 'error';
+        } else {
+            nombreInput.className = 'sinError'
+        }
+    };
+
+    apellidosInput.onchange = function () { apellidosInput.className = 'sinError' };
+    notaInput.onchange = function () { notaInput.className = 'sinError' };
+    emailInput.onchange = function () { emailInput.className = 'sinError' };
+
+    /*Notas: Reto analiza lo que esta pasando aqui y mejoralo.
+   1. En lugar de cambiar el color al border mejor agregar una clase de css, por ejeplo error y si estan bien quitarsela.
+   2. Si un campo por ejemplo el nombre dio error y si el usuario empieza a agregar el dato que se actualice el estado del color automaticamente, usar el event onchange para eso.
+   */
 
     btnIngresar.onclick = function (e) {
 
@@ -42,10 +56,11 @@ function init(e) {
         // notaInput.style.borderColor = normalColor;
         // emailInput.style.borderColor = normalColor;
 
-        nombreInput.onchange = function() {nombreInput.className = 'sinError'};
-        apellidosInput.onchange = function() {apellidosInput.className = 'sinError'};
-        notaInput.onchange = function() {notaInput.className = 'sinError'};
-        emailInput.onchange = function() {emailInput.className = 'sinError'};
+        //Estoy aqui no esta bien ponerlo, estas haciendo lo mismo en cada click
+        // nombreInput.onchange = function() { nombreInput.className = 'sinError'};
+        // apellidosInput.onchange = function() { apellidosInput.className = 'sinError'};
+        // notaInput.onchange = function() { notaInput.className = 'sinError'};
+        // emailInput.onchange = function() { emailInput.className = 'sinError'};
 
         if (nombreInput.value === '') {
             isOk = false;
@@ -77,10 +92,10 @@ function init(e) {
         } else {
             alert('Ingresar los datos marcados.');
         }
-        
+
     }
 
-  
+
     function agregarEstudiante(nombre, apellido, nota, email) {
         nombres.push(nombre);
         apellidos.push(apellido);
