@@ -16,15 +16,15 @@ function init(e) {
     var emailInput = document.getElementById('emailInput');
 
     var btnIngresar = document.getElementById('btnIngresar');
-    
-    var estudianteSlt = document.getElementById ('estudianteSlt')
-    
+
+    var estudianteSlt = document.getElementById('estudianteSlt')
+
     var btnBuscar = document.getElementById('btnBuscar');
 
-    agregarEstudiante('Mario', 'Lopez', '95','mlopez@mail.com');
-    agregarEstudiante('Laura', 'Morales', '65','lmorales@mail.com');
+    agregarEstudiante('Mario', 'Lopez', '95', 'mlopez@mail.com');
+    agregarEstudiante('Laura', 'Morales', '65', 'lmorales@mail.com');
 
-    /*Notas: Reto analiza lo que esta pasando aqui y mejoralo.
+     /*Notas: Reto analiza lo que esta pasando aqui y mejoralo.
     1. En lugar de cambiar el color al border mejor agregar una clase de css, por ejeplo error y si estan bien quitarsela.
     2. Si un campo por ejemplo el nombre dio error y si el usuario empieza a agregar el dato que se actualice el estado del color automaticamente, usar el event onchange para eso.
     */
@@ -80,53 +80,7 @@ function init(e) {
         
     }
 
-    // btnIngresar.onclick = function (e) {
-
-    //     if (nombreInput.value === '') {
-    //         alert('Ingresar el Nombre');
-    //         return;
-    //     }
-
-    //     if (apellidosInput.value === '') {
-    //         alert('Ingresar los Apellidos');
-    //         return;
-    //     }
-
-    //     if (notaInput.value === '') {
-    //         alert('Ingresar la Nota');
-    //         return;
-    //     }
-
-    //     if (notaInput.value < 0 || notaInput.value > 100) {
-    //         alert('Nota invalida, ingresar un valor entre 0 y 100');
-    //         return;
-    //     }
-
-    //     if (emailInput.value === '') {
-    //         alert('Ingresar el Email');
-    //         return;
-    //     }
-
-    //     agregarEstudiante(nombreInput.value, apellidosInput.value, notaInput.value, emailInput.value);
-        
-    //     clearInputs();
-       
-    //     console.log(nombres);
-    // }
-
-    btnBuscar.onclick = function (e) {
-        var indexEstudiante = Number(estudianteSlt.value);
-        document.getElementById('informacion').innerHTML = 'Información:' + ' ' + nombres[indexEstudiante] + ' ' + apellidos[indexEstudiante] + ',' + ' ' + 'nota' + ' ' + notas[indexEstudiante] + ',';
-        if(notas[indexEstudiante] >= 70) {
-            document.getElementById('aprobado').innerHTML = 'Abrobado';            
-            document.getElementById('aprobado').style.color = '#192a56';  
-        } else {
-            document.getElementById('aprobado').innerHTML = 'No Abrobado';            
-            document.getElementById('aprobado').style.color = '#c23616';
-        }
-        console.log(indexEstudiante);
-    }
-
+  
     function agregarEstudiante(nombre, apellido, nota, email) {
         nombres.push(nombre);
         apellidos.push(apellido);
@@ -143,7 +97,7 @@ function init(e) {
         console.log(option);
     }
 
-    function clearInputs(e) { 
+    function clearInputs(e) {
         nombreInput.value = '';
         apellidosInput.value = '';
         emailInput.value = '';
