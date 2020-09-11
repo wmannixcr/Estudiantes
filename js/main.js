@@ -26,17 +26,56 @@ function init(e) {
 
     //Debes usar el onkeyup que se dispara cada ves que se detecta que una tecla se levanto en el input.
     //Aqui se hace para nombreInput pero puedes hacer uno para todos, osea sacar el codigo que se repite a una function.
-    nombreInput.onkeyup = function (e) {
-        if (nombreInput.value === '') {
-            nombreInput.className = 'error';
-        } else {
-            nombreInput.className = 'sinError'
-        }
-    };
 
-    apellidosInput.onchange = function () { apellidosInput.className = 'sinError' };
-    notaInput.onchange = function () { notaInput.className = 'sinError' };
-    emailInput.onchange = function () { emailInput.className = 'sinError' };
+    // nombreInput.onkeyup = function (e) {
+    //     if (nombreInput.value === '') {
+    //         console.log(nombreInput.value);
+    //         nombreInput.className = 'error';
+    //     } else {
+    //         nombreInput.className = 'sinError';
+    //         console.log(nombreInput.value);
+    //     }
+    // }
+
+
+    var campos = ['nombreInput', 'apellidosInput', 'notaInput', 'emailInput'];
+    var general;
+
+    // ****** Opcion con While ********
+
+    var i = 0;
+    while (i < campos.length) {
+        general = document.getElementById(campos[i]);
+        general.onkeyup = function (e) {
+            if (general === '') {
+                general.className = 'error';
+            } else {
+                general.className = 'sinError';
+            }
+        }
+        i++;
+    }
+
+    // ****** Opcion con For ********
+
+    // for ( var i = 0; i < campos.length; i++) {
+    //     general = document.getElementById(campos[i]);
+    //     console.log(general);
+    //     general.onkeyup = function (e) {
+    //         if (general === '') {
+    //             general.className = 'error';
+    //         } else {
+    //             general.className = 'sinError';
+    //         }
+    //     }
+    // }
+
+    // ****** Opcion con en una sola linea ******** 
+
+    // nombreInput.onkeyup = function () { nombreInput.className = 'sinError' };
+    // apellidosInput.onkeyup = function () { apellidosInput.className = 'sinError' };
+    // notaInput.onkeyup = function () { notaInput.className = 'sinError' };
+    // emailInput.onkeyup = function () { emailInput.className = 'sinError' };
 
     /*Notas: Reto analiza lo que esta pasando aqui y mejoralo.
    1. En lugar de cambiar el color al border mejor agregar una clase de css, por ejeplo error y si estan bien quitarsela.
@@ -95,6 +134,52 @@ function init(e) {
 
     }
 
+    // btnIngresar.onclick = function (e) {
+
+    //     if (nombreInput.value === '') {
+    //         alert('Ingresar el Nombre');
+    //         return;
+    //     }
+
+    //     if (apellidosInput.value === '') {
+    //         alert('Ingresar los Apellidos');
+    //         return;
+    //     }
+
+    //     if (notaInput.value === '') {
+    //         alert('Ingresar la Nota');
+    //         return;
+    //     }
+
+    //     if (notaInput.value < 0 || notaInput.value > 100) {
+    //         alert('Nota invalida, ingresar un valor entre 0 y 100');
+    //         return;
+    //     }
+
+    //     if (emailInput.value === '') {
+    //         alert('Ingresar el Email');
+    //         return;
+    //     }
+
+    //     agregarEstudiante(nombreInput.value, apellidosInput.value, notaInput.value, emailInput.value);
+
+    //     clearInputs();
+
+    //     console.log(nombres);
+    // }
+
+    btnBuscar.onclick = function (e) {
+        var indexEstudiante = Number(estudianteSlt.value);
+        document.getElementById('informacion').innerHTML = 'Información:' + ' ' + nombres[indexEstudiante] + ' ' + apellidos[indexEstudiante] + ',' + ' ' + 'nota' + ' ' + notas[indexEstudiante] + ',';
+        if(notas[indexEstudiante] >= 70) {
+            document.getElementById('aprobado').innerHTML = 'Abrobado';
+            document.getElementById('aprobado').style.color = '#27ae60';
+        } else {
+            document.getElementById('aprobado').innerHTML = 'No Abrobado';
+            document.getElementById('aprobado').style.color = '#c23616';
+        }
+        console.log(indexEstudiante);
+    }
 
     function agregarEstudiante(nombre, apellido, nota, email) {
         nombres.push(nombre);
