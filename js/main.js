@@ -38,6 +38,15 @@ function init(e) {
     // }
 
 
+    // *** Opcion de onkeyup en una sola linea, *******
+    //     en cambia el estado en cada campo       
+
+    // nombreInput.onkeyup = function () { nombreInput.className = 'sinError' };
+    // apellidosInput.onkeyup = function () { apellidosInput.className = 'sinError' };
+    // notaInput.onkeyup = function () { notaInput.className = 'sinError' };
+    // emailInput.onkeyup = function () { emaiInput.className = 'sinError' };
+
+
     var campos = ['nombreInput', 'apellidosInput', 'notaInput', 'emailInput'];
     var general;
 
@@ -70,30 +79,9 @@ function init(e) {
     //     }
     // }
 
-    // ****** Opcion con en una sola linea ******** 
-
-    // nombreInput.onkeyup = function () { nombreInput.className = 'sinError' };
-    // apellidosInput.onkeyup = function () { apellidosInput.className = 'sinError' };
-    // notaInput.onkeyup = function () { notaInput.className = 'sinError' };
-    // emailInput.onkeyup = function () { emailInput.className = 'sinError' };
-
-    /*Notas: Reto analiza lo que esta pasando aqui y mejoralo.
-   1. En lugar de cambiar el color al border mejor agregar una clase de css, por ejeplo error y si estan bien quitarsela.
-   2. Si un campo por ejemplo el nombre dio error y si el usuario empieza a agregar el dato que se actualice el estado del color automaticamente, usar el event onchange para eso.
-   */
-
     btnIngresar.onclick = function (e) {
 
         var isOk = true;
-        // var normalColor = 'rgb(189, 195, 199)';
-        // var errorColor = 'red';
-        // var error = window.getComputedStyle('');
-        // let errorBg = error.getPropertyValue*('background-color');
-
-        // nombreInput.style.borderColor = normalColor;
-        // apellidosInput.style.borderColor = normalColor;
-        // notaInput.style.borderColor = normalColor;
-        // emailInput.style.borderColor = normalColor;
 
         //Estoy aqui no esta bien ponerlo, estas haciendo lo mismo en cada click
         // nombreInput.onchange = function() { nombreInput.className = 'sinError'};
@@ -109,19 +97,16 @@ function init(e) {
 
         if (apellidosInput.value === '') {
             isOk = false;
-            // apellidosInput.style.borderColor = errorColor;
             apellidosInput.className = 'error';
         }
 
         if (notaInput.value === '' || notaInput.value < 0 || notaInput.value > 100) {
             isOk = false;
-            // notaInput.style.borderColor = errorColor;
             notaInput.className = 'error';
         }
 
         if (emailInput.value === '') {
             isOk = false;
-            // emailInput.style.borderColor = errorColor;
             emailInput.className = 'error';
         }
 
@@ -133,40 +118,6 @@ function init(e) {
         }
 
     }
-
-    // btnIngresar.onclick = function (e) {
-
-    //     if (nombreInput.value === '') {
-    //         alert('Ingresar el Nombre');
-    //         return;
-    //     }
-
-    //     if (apellidosInput.value === '') {
-    //         alert('Ingresar los Apellidos');
-    //         return;
-    //     }
-
-    //     if (notaInput.value === '') {
-    //         alert('Ingresar la Nota');
-    //         return;
-    //     }
-
-    //     if (notaInput.value < 0 || notaInput.value > 100) {
-    //         alert('Nota invalida, ingresar un valor entre 0 y 100');
-    //         return;
-    //     }
-
-    //     if (emailInput.value === '') {
-    //         alert('Ingresar el Email');
-    //         return;
-    //     }
-
-    //     agregarEstudiante(nombreInput.value, apellidosInput.value, notaInput.value, emailInput.value);
-
-    //     clearInputs();
-
-    //     console.log(nombres);
-    // }
 
     btnBuscar.onclick = function (e) {
         var indexEstudiante = Number(estudianteSlt.value);
