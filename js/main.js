@@ -48,22 +48,43 @@ function init(e) {
 
 
     var campos = ['nombreInput', 'apellidosInput', 'notaInput', 'emailInput'];
-    var general;
+    // var general;
 
     // ****** Opcion con While ********
 
+    /*
+    //Notas: No me gusta ese while para esto pero alli esta.
+    //Investiga sobre className y classList
     var i = 0;
     while (i < campos.length) {
-        general = document.getElementById(campos[i]);
-        general.onkeyup = function (e) {
-            if (general === '') {
-                general.className = 'error';
+        // general = document.getElementById(campos[i]);
+        document.getElementById(campos[i]).onkeyup = function (e) {
+            console.log(e);
+            if (e.target.value === '') {
+                e.target.classList.add('error');
             } else {
-                general.className = 'sinError';
+                e.target.classList.remove('error');
             }
         }
         i++;
     }
+    */
+
+
+    //Nota: Prefiero esta solucion, ya tenias las referencias del input y ademas es mas facil de leer
+    nombreInput.onkeyup = validateInput;
+    apellidosInput.onkeyup = validateInput;
+    notaInput.onkeyup = validateInput;
+    emailInput.onkeyup = validateInput;
+
+    function validateInput(e) {
+        if (e.target.value === '') {
+            e.target.classList.add('error');
+        } else {
+            e.target.classList.remove('error');
+        }
+    }
+
 
     // ****** Opcion con For ********
 
