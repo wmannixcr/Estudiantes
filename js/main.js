@@ -70,12 +70,26 @@ function init(e) {
         }
 
         if (isOk) {
-            agregarEstudiante(nombreInput.value, apellidosInput.value, notaInput.value, emailInput.value);
+            validaEmail(emailInput.value);
             clearInputs();
         } else {
             alert('Ingresar los datos marcados.');
         }
 
+    };
+
+    function validaEmail (email) {
+
+        var indice = bdEstudiantes.length - 1;
+
+        for ( var i = 0; i <= indice; i++ ) {
+            if (email === bdEstudiantes[i].emailInput) {
+                alert('El estudiante ya existe');
+                return;
+            }
+        }
+
+        agregarEstudiante(nombreInput.value, apellidosInput.value, notaInput.value, emailInput.value);
     }
 
     function agregarEstudiante(nombre, apellidos, nota, email) {
@@ -92,6 +106,9 @@ function init(e) {
         option.innerHTML = bdEstudiantes[index].nombreInput + ' ' + bdEstudiantes[index].apellidosInput;
         estudianteSlt.appendChild(option);
 
+        // Agrego una nueva propiedad idSelector para guardar el valor de la opcion del Select
+
+        Object.defineProperty(bdEstudiantes[index], 'idSelector', {value:index});
         console.log(option);
     }
 
@@ -112,19 +129,26 @@ function init(e) {
     }
 
     btnEliminar.onclick = function (e) {
-        var indexEstudiante = Number(estudianteSlt.value);
-        console.log(indexEstudiante);
+        var indexSelect = Number(estudianteSlt.value);
+        console.log(estudianteSlt.value);
+        
+        estudianteSlt.remove(estudianteSlt[indexSelect]);
+        console.log(estudianteSlt.value);
 
-        bdEstudiantes.splice(indexEstudiante,1);
+        var indice = bdEstudiantes.length - 1;
+
+        for ( var i = 0; i <= indice; i++ ) {
+            if (indexSelect === bdEstudiantes[i].idSelector) {
+
+                document.getElementById('informacion').innerHTML = 'El estudiante' + ' ' + bdEstudiantes[i].nombreInput + ' ' + bdEstudiantes[i].apellidosInput + ' ' + 'fue eliminado.';
+
+                bdEstudiantes.splice(i,1);
+               
+                return;
+            }
+        }
+
         console.log(bdEstudiantes);
-
-        // var option  = document.createElement('option');
-        // option.value = indexEstudiante - 1;
-        // option.innerHTML = bdEstudiantes[index].nombreInput + ' ' + bdEstudiantes[index].apellidosInput;
-        // estudianteSlt.appendChild(option);
-
-
-        // estudianteSlt.removeChild(option);
     };
 
     function clearInputs(e) {
@@ -134,4 +158,8 @@ function init(e) {
         notaInput.value = '';
     }
 
+
+    console.log(bdEstudiantes);
+
 }
+
