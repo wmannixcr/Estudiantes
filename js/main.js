@@ -128,17 +128,22 @@ function init(e) {
         console.log(indexEstudiante);
     }
 
+    // Boton y funcion para eliminar la opcion del select y el objeto del array
+
     btnEliminar.onclick = function (e) {
         var indexSelect = Number(estudianteSlt.value);
-        console.log(estudianteSlt.value);
-        
-        estudianteSlt.remove(estudianteSlt[indexSelect]);
-        console.log(estudianteSlt.value);
 
+        estudianteSlt.remove(estudianteSlt.value[indexSelect]);
+        //console.log(estudianteSlt.value);
+
+        eliminaEstudiante(indexSelect);
+    }
+    
+    function eliminaEstudiante (index) {
         var indice = bdEstudiantes.length - 1;
 
         for ( var i = 0; i <= indice; i++ ) {
-            if (indexSelect === bdEstudiantes[i].idSelector) {
+            if (index === bdEstudiantes[i].idSelector) {
 
                 document.getElementById('informacion').innerHTML = 'El estudiante' + ' ' + bdEstudiantes[i].nombreInput + ' ' + bdEstudiantes[i].apellidosInput + ' ' + 'fue eliminado.';
 
@@ -147,9 +152,9 @@ function init(e) {
                 return;
             }
         }
-
-        console.log(bdEstudiantes);
-    };
+    }
+    
+    //console.log(bdEstudiantes);
 
     function clearInputs(e) {
         nombreInput.value = '';
