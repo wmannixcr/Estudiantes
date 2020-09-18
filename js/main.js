@@ -29,6 +29,7 @@ function init(e) {
 
     agregarEstudiante('Mario', 'Lopez', '95', 'mlopez@mail.com');
     agregarEstudiante('Laura', 'Morales', '65', 'lmorales@mail.com');
+    agregarEstudiante('Esteban', 'Padilla', '85', 'ep@mail.com');
 
 
     //Nota: Prefiero esta solucion, ya tenias las referencias del input y ademas es mas facil de leer
@@ -131,8 +132,15 @@ function init(e) {
     // Boton y funcion para eliminar la opcion del select y el objeto del array
 
     btnEliminar.onclick = function (e) {
+
+
         var indexSelect = Number(estudianteSlt.value);
 
+        //Aqui hay un problemita y es cosa de entender esto. El componente select es solo
+        //la parte visual de lo que esta en los datos. Aqui el problemita es que estas
+        //borrando un option del select y lo que debes hacer es borrar todo el contenido del
+        //select y volverlo a llenar respectivamente con lo que tienes en los datos.
+        //
         estudianteSlt.remove(estudianteSlt.value[indexSelect]);
         //console.log(estudianteSlt.value);
 
@@ -143,12 +151,22 @@ function init(e) {
         var indice = bdEstudiantes.length - 1;
 
         for ( var i = 0; i <= indice; i++ ) {
+            //No es buena practica tener en el object el index de donde esta, para eso es
+            //el index del arreglo, ademas que ya existe un identificador unico que es el email.
+            //No deberias estar validando aqui esto ya que el select solo puede mandar 
+            // los index de los estudiantes en el arreglo, aqui no hay forma que de el select 
+            //mande otra cosa si esta bien formado.
+
             if (index === bdEstudiantes[i].idSelector) {
 
                 document.getElementById('informacion').innerHTML = 'El estudiante' + ' ' + bdEstudiantes[i].nombreInput + ' ' + bdEstudiantes[i].apellidosInput + ' ' + 'fue eliminado.';
 
+
                 bdEstudiantes.splice(i,1);
-               
+                //despues de borrar el estudiante debes volver a forma el select que refleje 
+                //la infomacion correcta de los datos.
+                //Imagina que eso es un llamado al server, vos no vas a actualizar el UI hasta que el server confirme que los datos fueron borrados.
+                //Debes plantear mejor la solucion. Piensalo y lo vemos en la clase.
                 return;
             }
         }
