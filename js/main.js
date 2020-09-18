@@ -140,7 +140,7 @@ function init(e) {
         //la parte visual de lo que esta en los datos. Aqui el problemita es que estas
         //borrando un option del select y lo que debes hacer es borrar todo el contenido del
         //select y volverlo a llenar respectivamente con lo que tienes en los datos.
-        //
+        //De este modo borrar aqui es innecesario ya que debes volver a dibujarlos eventualmente.
         estudianteSlt.remove(estudianteSlt.value[indexSelect]);
         //console.log(estudianteSlt.value);
 
